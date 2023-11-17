@@ -11,6 +11,11 @@ public class ChangeEmailDTO {
         return newEmail;
     }
 
+    public String Test() {
+        return newEmail;
+    }
+
+
     public void setNewEmail(String email) {
         this.newEmail = email;
     }
