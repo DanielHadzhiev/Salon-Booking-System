@@ -1,0 +1,154 @@
+body{
+  background-image: url("/images/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed
+}
+.user-info{
+  position: absolute;
+  background-color: white;
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 400px;
+  margin-right: auto;
+  height: 650px;
+  align-items: center;
+  border-radius: 20px;
+  opacity: 88%;
+}
+.personal-row{
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.image-row{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+}
+.header{
+  font-family: Arial;
+  font-weight: bold;
+}
+.default-image{
+  border: solid 2px black;
+  border-radius: 50px;
+height: 200px;
+width: 200px;
+}
+.image{
+  border-radius: 20px;
+  padding: 10px 10px;
+}
+.form-file{
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+.change-photo{
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  font-size: large;
+  font-family: Arial;
+  text-decoration: underline;
+  background-color:transparent;
+}
+.change-photo:hover{
+opacity: 0.7;
+}
+.change-photo:active{
+opacity: 0.5;
+}
+
+.text{
+  font-size: 25px;
+overflow: hidden;
+}
+
+/*phone*/
+@media only screen and (min-width: 300px) and (max-width:767px) {
+  .content{
+    display: flex;
+    justify-content:center;
+  }
+  .email-row{
+    margin-top: 30px;
+  }
+  .password-row{
+    margin-top: 50px;
+  }
+  .gender-row{
+    margin-top: 30px;
+  }
+  .personal-row{
+    display: flex;
+    flex-direction: column;
+  }
+  .user-info{
+    width: 200px;
+    height: 750px;
+    margin-left: 120px;
+  }
+  .text{
+    font-size: 15px;
+  }
+  .default-image{
+    height: 100px;
+    width: 100px;
+  }
+  .change-photo{
+    font-size: 15px;
+  }
+  .header{
+    font-size: 20px;
+  }
+}
+
+/*tablet*/
+@media only screen and (min-width: 768px) and (max-width:999px){
+  .content{
+    display: flex;
+    justify-content:center;
+  }
+  .email-row{
+    margin-top: 60px;
+  }
+  .password-row{
+    margin-top: 100px;
+  }
+  .gender-row{
+    margin-top: 40px;
+  }
+  .personal-row{
+    display: flex;
+    flex-direction: column;
+  }
+  .user-info{
+    width: 500px;
+    height: 1200px;
+    margin-left: 200px;
+  }
+  .text{
+    font-size: 25px;
+  }
+  .default-image{
+    height: 200px;
+    width: 200px;
+  }
+  .change-photo{
+    font-size: 30px;
+  }
+  .header{
+    font-size: 40px;
+  }
+  }
+  
+  /*monitor*/
+  @media only screen and (min-width: 1000px){
+   
+  }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="/css/messages.css">
+  <title>Log in</title>
+</head>
+<body>
+
+  <form class="log-in-form" th:action="@{/login}" th:method="post" th:object="${loginDTO}">
+    <p class="log-in-text">
+  Log in:
+    </p>
+    <div class="user-info" style="text-align: center">
+      <p th:if="${result}" class="backend-message">Incorrect email or password.</p>
+      <div class="email-column">
+    <div class="email-row">
+      <img class="email-image" src="/images/email.svg">
+    <input th:errorclass="bg-danger" th:field="*{email}" class="email-bar" type="text" placeholder="Enter your email">
+  </div>
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="backend-message"></p>
+  <p class="email-message"></p>
+</div>
+<div class="password-column">
+  <div class="password-row">
+    <img class="password-image" src="/images/password.svg">
+    <input th:errorclass="bg-danger" th:field="*{password}" class="password-bar" type="password" placeholder="Enter your password">
+    <img class="show-password" src="/images/eye-off.svg">
+  </div>
+  <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="backend-message"></p>
+  <p class="password-message"></p>
+</div>
+</div>
+  <button type="submit" class="submit-button">
+    Log in
+  </button>
+  <a class="create-account" th:href="@{/register}">
+Create account
+  </a>
+  </form>
+
+  <script src="/scripts/eye-animation.js"></script>
+  <script src="/front-validations/login.js"></script>
+</body>
+</html>

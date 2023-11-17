@@ -1,0 +1,26 @@
+.email-message,
+.name-message,
+.date-message,
+.password-message,
+.old-password-message,
+.new-password-message,
+.news-message,
+.gender-message,
+.image-message,
+.service-message,
+.comments-message,
+.make-admin-message{
+font-size: 15px;
+font-family: Arial;
+font-weight: bold;
+color: #FF3C38;
+}
+.backend-message{
+    font-size: 15px;
+    font-family: Arial;
+    font-weight: bold;
+    color: #FF3C38;
+}
+.bg-danger{
+    background-color: #FF3C38;
+}

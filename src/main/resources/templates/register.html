@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/register.css">
+  <link rel="stylesheet" href="/css/messages.css">
+  <title>Register</title>
+</head>
+<body>
+  <form class="registration-form" th:object="${registerDTO}"
+        th:action="@{/register}"
+        th:method="post"
+        enctype="multipart/form-data">
+    <p class="register-text">
+  Register:
+    </p>
+    <div class="user-info">
+<div class="image-row">
+  <div class="image">
+<img class="default-image" src="/images/default-photo.png">
+  </div>
+  <input th:errorclass="bg-danger" th:field="*{userImage}" class="form-file" type="file" accept="image/*">
+  <button type="button" onclick="document.querySelector('.form-file').click()" 
+  class="add-photo">
+  Add photo
+</button>
+  <p th:if="${#fields.hasErrors('userImage')}" th:errors="*{userImage}" class="backend-message"></p>
+<p class="image-message"></p>
+</div>
+<div class="name-column">
+    <div class="name-row">
+      <img class="user-image" src="/images/user.svg">
+      <input th:errorclass="bg-danger" th:field="*{name}" class="name-bar" type="text"placeholder="Enter your name">
+    </div>
+  <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="backend-message"></p>
+    <p class="name-message"></p>
+  </div>
+  <div class="email-column">
+    <div class="email-row">
+      <img class="email-image" src="/images/email.svg">
+    <input th:errorclass="bg-danger" th:field="*{email}" class="email-bar" type="text" placeholder="Enter your email">
+  </div>
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="backend-message"></p>
+  <p  class="email-message"></p>
+  </div>
+  <div class="password-column">
+  <div class="password-row">
+    <img class="password-image" src="/images/password.svg">
+    <input th:errorclass="bg-danger" th:field="*{password}" class="password-bar" type="password" placeholder="Enter your password">
+    <img class="show-password" src="/images/eye-off.svg">
+  </div>
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="backend-message"></p>
+  <p class="password-message"></p>
+  </div>
+  <div class="gender-column">
+  <div class="select-gender-row">
+    <img class="gender-image" src="/images/gender.png">
+<select th:errorclass="bg-danger" th:field="*{gender}" class="select-gender" name="select-gender">
+  <option value="" disabled selected>Select gender</option>
+  <option value="MALE">Male</option>
+  <option value="FEMALE">Female</option>
+</select>
+  </div>
+    <p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="backend-message"></p>
+  <p class="gender-message"></p>
+</div>
+</div>
+  <button type="submit" class="submit-button">
+    Register
+  </button>
+  <a class="have-account" th:href="@{/login}">
+Already have an account
+  </a>
+</form>
+
+  <script src="/scripts/eye-animation.js"></script>
+  <script src="/scripts/chage-image.js"></script>
+  <script src="/front-validations/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+body{
+  background-image: url("/images/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed
+}
+.content{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: absolute;
+  background-color: white;
+  display: flex;
+  width: 96%;
+  flex-direction: column;
+  margin-top: 10px;
+  height: 800px;
+  align-items: center;
+  border-radius: 20px;
+  opacity: 88%;
+}
+.weather-section{
+  height: 600px;
+  background-color: #E2DBBE;
+  border-radius: 30px;
+  border: white 3px solid;
+  display:flex;
+  align-content: center;
+  justify-content: center;
+}
+.weather-div{
+  font-family: Arial;
+}
+.bolded{
+  font-size: 17px;
+  font-weight: bold;
+}
+.weather-div img{
+  margin-left: 40px;
+  width: 75px;
+  height: 75px;
+}
+.header{
+  font-family: Arial;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.content::-webkit-scrollbar{
+  width: 5px;
+}
+.secondary-div{
+  height: 800px;
+  float: right;
+  display: flex;
+  flex-direction: column;
+align-items: center;
+}
+.post-news{
+  margin-top: 40px;
+  align-self: center;
+  background-color:#fff;
+  color: #222;
+  border-radius: 20px;
+  font-family: Arial;
+  font-weight: bold;
+  border:none;
+  padding: 10px 40px;
+}
+.post-news:hover{
+  transition: 0.3s ease;
+opacity: 80%;
+cursor: pointer;
+}
+.post-news:active{
+  opacity: 50%;
+}
+.news-info{
+  margin-top: 20px;
+  height: auto;
+  width: 90%;
+  background-color: #B2FFA9;
+  color: black;
+  border: black 2px solid;
+  border-radius: 20px;
+  font-family: Arial;
+}
+
+.posted-by{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/*phone*/
+@media only screen and (min-width:300px) and (max-width:768px){
+  .content{
+    height: 90%;
+    width: 50%;
+    margin: auto auto auto 30%;
+  }
+  .header{
+    font-size: 25px;
+  }
+  .weather-section{
+    display: none;
+  }
+.secondary-div{
+  height: 20%;
+  margin-top: 550px;
+  float: left;
+  bottom: 0;
+  margin-left: 45%;
+}
+  }
+  
+  /*tablet*/
+  @media only screen and (min-width: 768px) and (max-width:999px){
+  .content{
+    height: 90%;
+    width: 50%;
+    margin-top: 0;
+    margin-left: 23%;
+  }
+  .secondary-div{
+    height: 400px;
+    width: 20%;
+    float: right;
+    margin-right: 2%;
+    margin-top: 10%;
+  }
+  .weather-section{
+    height: 200px;
+    width: 100%;
+    float: right;
+    margin-right: 2%;
+    margin-top: 10%;
+  }
+  
+  }
+  
+  /*monitor*/
+  @media only screen and (min-width: 1000px){
+    .content{
+      width: 50%;
+      margin-left: 20%;
+    height: 90%;
+    }
+    .secondary-div{
+      height: 400px;
+    width: 20%;
+    float: right;
+    margin-right: 2%;
+    margin-top: 10%;
+    }
+    .weather-section{
+      height: 200px;
+      width: 100%;
+      float: right;
+      margin-right: 2%;
+      margin-top: 10%;
+    }
+  }

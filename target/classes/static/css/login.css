@@ -1,0 +1,125 @@
+body{
+  background-image: url("/images/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed
+}
+.log-in-form{
+  position: absolute;
+  background-color: white;
+  display: flex;
+  width: 96%;
+  flex-direction: column;
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 600px;
+  align-items: center;
+  border-radius: 20px;
+  opacity: 88%;
+}
+.log-in-text{
+  font-size: 40px;
+  font-family: Arial;
+  font-weight: bold;
+}
+.email-column,
+.password-column{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.user-info > *{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+.email-image,
+.password-image{
+  height: 30px;
+  width: 40px;
+}
+
+.email-bar,
+.password-bar{
+  height: 40px;
+  width: 250px;
+  border: 2px #606060 solid;
+border-radius: 30px;
+font-size: 20px;
+}
+
+.email-row,
+.password-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.show-password{
+  height: 20px;
+  width: 30px;
+  cursor: pointer;
+}
+.submit-button{
+  margin-top:20px;
+border-radius: 40px;
+padding: 10px 20px;
+border: 2px black solid;
+font-size: 20px;
+font-family: arial;
+font-weight: bold;
+cursor: pointer;
+}
+.submit-button:hover{
+  opacity: 85%;
+  transition: 0.15s;
+}
+.submit-button:active{
+  transition: 0.2s;
+  border: 2px white;
+  color: white;
+  background-color: black;
+}
+.create-account{
+  color: black;
+  margin-top: 50px;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.create-account:hover{
+  opacity: 85%;
+  transition: 0.2s;
+}
+.create-account:active{
+opacity: 60%;
+transition: 0.1s;
+}
+/*phone*/
+@media only screen and (min-width:300px) and (max-width:768px) {
+ 
+  .log-in-form{
+    margin-top: 60px;
+  }
+}
+
+/*tablet*/
+@media only screen and (min-width: 768px) and (max-width:999px){
+.log-in-form{
+  width: 60%;
+  margin-top: 60px;
+  margin-left: 200px;
+}
+
+}
+
+/*monitor*/
+@media only screen and (min-width: 1000px){
+  .log-in-form{
+    width: 50%;
+    margin: 60px 350px;
+  }
+}

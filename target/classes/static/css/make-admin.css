@@ -1,0 +1,83 @@
+body{
+  background-image: url("/images/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed
+}
+
+.make-admin-form{
+  position: absolute;
+  background-color: white;
+  display: flex;
+  width: 96%;
+  flex-direction: column;
+  row-gap: 15%;
+  margin-top: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 600px;
+  align-items: center;
+  border-radius: 20px;
+  opacity: 88%;
+}
+.make-admin-form h1{
+  font-family: Arial;
+  text-decoration: underline;
+}
+.submit-button{
+border-radius: 40px;
+padding: 10px 20px;
+border: 2px black solid;
+font-size: 20px;
+font-family: arial;
+font-weight: bold;
+cursor: pointer;
+}
+.submit-button:hover{
+  opacity: 85%;
+  transition: 0.15s;
+}
+.submit-button:active{
+  transition: 0.2s;
+  border: 2px white;
+  color: white;
+  background-color: black;
+}
+.user-select{
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  width: 200px;
+  border-width: 2px;
+  border-style: solid;
+  width: 250px;
+}
+/*phone*/
+@media only screen and (min-width:300px) and (max-width:767px){
+  .make-admin-form{
+    width: 60%;
+    margin-top: 100px;
+    margin-left: 30%;
+  }
+
+}
+
+
+/*tablet*/
+@media only screen and (min-width: 768px) and (max-width:999px){
+  .make-admin-form{
+    width: 60%;
+    margin-top: 100px;
+    margin-left: 30%;
+  }
+  
+  }
+  
+  /*monitor*/
+  @media only screen and (min-width: 1000px){
+    .make-admin-form{
+      width: 50%;
+      margin: 60px 400px;
+    }
+  }

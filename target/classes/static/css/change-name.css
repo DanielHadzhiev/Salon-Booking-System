@@ -1,0 +1,148 @@
+body{
+  background-image: url("/images/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed
+}
+
+.name-form{
+  position: absolute;
+  background-color: white;
+  display: flex;
+  width: 96%;
+  flex-direction: column;
+  margin-top: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 450px;
+  align-items: center;
+  border-radius: 20px;
+  opacity: 88%;
+}
+.password-form{
+  position: absolute;
+  background-color: white;
+  display: flex;
+  width: 96%;
+  flex-direction: column;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 600px;
+  align-items: center;
+  border-radius: 20px;
+  opacity: 88%;
+}
+
+.header{
+  font-family: Arial;
+  font-weight: bold;
+}
+.name-input,
+.password-bar,
+.password-input{
+  height: 40px;
+  width: 250px;
+  border: 2px #606060 solid;
+border-radius: 30px;
+font-size: 20px;
+}
+.password-bar::placeholder{
+font-size: 15px;
+}
+.password-input::placeholder{
+  font-size: 15px;
+}
+.password-input{
+  margin-right: 30px;
+}
+.show-password{
+  cursor: pointer;
+}
+.input-div{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 20px;
+}
+.user-image{
+  height: 30px;
+  width: 30px;
+}
+
+.submit-button{
+  margin-top:60px;
+border-radius: 40px;
+padding: 10px 20px;
+border: 2px black solid;
+font-size: 20px;
+font-family: arial;
+font-weight: bold;
+cursor: pointer;
+}
+.submit-button:hover{
+  opacity: 85%;
+  transition: 0.15s;
+}
+.submit-button:active{
+  transition: 0.2s;
+  border: 2px white;
+  color: white;
+  background-color: black;
+}
+
+/*phone*/
+@media only screen and (min-width:300px) and (max-width:767px){
+  .name-form{
+    width: 60%;
+    margin-top: 100px;
+    margin-left: 30%;
+  }
+  .input-div{
+    margin-left: 3%;
+  }
+  .input-div img{
+height: 25px;
+  }
+  .input-div input{
+    width: 70%;
+  }
+  .password-form{
+    width: 60%;
+      margin-top: 10%;
+      margin-left: 30%;
+  } 
+  .input-div .show-password{
+    height: 20px;
+    margin-right: 3%;
+  }
+  .submit-button{
+    margin-top: 15%;
+  }
+}
+
+
+/*tablet*/
+@media only screen and (min-width: 768px) and (max-width:999px){
+  .name-form{
+    width: 60%;
+    margin-top: 100px;
+    margin-left: 30%;
+  }
+  
+  .password-form{
+    width: 60%;
+    margin-top: 60px;
+    margin-left: 30%;
+  }
+  }
+  
+  /*monitor*/
+  @media only screen and (min-width: 1000px){
+    .name-form,
+    .password-form{
+      width: 50%;
+      margin: 60px 400px;
+    }
+  }

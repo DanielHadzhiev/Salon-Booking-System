@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change e-mail</title>
+  <link rel="stylesheet" href="/css/change-name.css">
+  <link rel="stylesheet" href="/css/service-home-sidebar.css">
+  <link rel="stylesheet" href="/css/messages.css">
+</head>
+<body>
+
+<nav th:replace="~{fragments/commons::nav}"></nav>
+
+  <form th:object="${changeEmailDTO}" th:action="@{/profile/change-email}" th:method="post" class="name-form" style="text-align: center;">
+    <h1 class="header">Change e-mail:</h1>
+    <h2 class="header">New e-mail:</h2>
+    <div class="input-div">
+      <img class="user-image" src="/images/email.svg">
+    <input th:errorclass="bg-danger" th:field="*{newEmail}" class="name-input" type="text" placeholder="Enter your new e-mail here">
+  </div>
+    <p th:if="${#fields.hasErrors('newEmail')}" th:errors="*{newEmail}" class="backend-message"></p>
+  <p class="email-message"></p>
+  <button type="submit" class="submit-button">
+    Change
+  </button>
+</form>
+
+<script src="/front-validations/change-email.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+body{
+  background-image: url("/images/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed
+}
+.reservation-form{
+  position: absolute;
+  background-color: white;
+  display: flex;
+  width: 96%;
+  flex-direction: column;
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 650px;
+  align-items: center;
+  border-radius: 20px;
+  opacity: 88%;
+}
+.reservation-text{
+  font-size: 40px;
+  font-family: Arial;
+  font-weight: bold;
+}
+.submit-button{
+  margin-left: 260px;
+  margin-top: 5px;
+border-radius: 40px;
+padding: 10px 30px;
+border: 2px black solid;
+font-size: 20px;
+font-family: arial;
+font-weight: bold;
+cursor: pointer;
+}
+.submit-button:hover{
+  opacity: 85%;
+  transition: 0.15s;
+}
+.submit-button:active{
+  transition: 0.2s;
+  border: 2px white;
+  color: white;
+  background-color: black;
+}
+.service-select,
+.date-time-select{
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  width: 200px;
+  border-width: 2px;
+  border-style: solid;
+
+}
+.service-washing-div{
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.date-time-select{
+  width: 300px;
+}
+.comments-div{
+  margin-left: 40px;
+}
+.comments-section{
+  height: 110px;
+  width: 600px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+}
+.comments-section::placeholder{
+  font-size: 20px;
+}
+.washing-checkbox{
+  margin-left: 15px;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+.washing-checkbox-div{
+ opacity: 0;
+  margin-top: -10px;
+  margin-bottom: 20px;
+
+}
+.content-flex{
+  display: flex;
+  flex-direction: row;
+
+}
+
+/*phone*/
+@media only screen and (min-width:300px) and (max-width:767px){
+
+  .reservation-form{
+    width: 50%;
+    height: 150%;
+    margin-top: 20px;
+    margin-left: 30%;
+  }
+  .reservation-text{
+    font-size: 25px;
+    margin-top: 10%;
+  }
+  .comments-section{
+    width: 70%;
+    height: 100px;
+    margin-left: 0%;
+  }
+  .comments-div{
+    margin-left:0%;
+  }
+  .comments-div h4{
+  font-size: 20px;
+
+  margin-top: 5%;
+  }
+  .content-flex{
+    display: flex;
+    flex-direction: column;
+  }
+  .date-time-select{
+    font-size: 15px;
+    width: 70%;
+    margin-left: 15%;
+  }
+  .date-div h4{
+    margin-top: 10%;
+    font-size: 20px;
+    margin-left: 20%;
+  }
+  .service-select{
+    font-size: 15px;
+    width: 90%;
+    margin-left: 10%;
+    margin-top: 3%;
+  }
+  .service-div h4{
+    font-size: 20px;
+    margin-left: 30%;
+  }
+  .washing-checkbox-div h5{
+    font-size: 13px;
+    }
+    .submit-button{
+      margin-left: 25%;
+      margin-top: 25%;
+    border-radius: 40px;
+    padding: 5px 15px;
+    border: 2px black solid;
+    font-size: 20px;
+    font-family: arial;
+    font-weight: bold;
+    cursor: pointer;
+    }
+    .date-message{
+      margin-left: 20%;
+    }
+}
+
+
+/*tablet*/
+@media only screen and (min-width: 768px) and (max-width: 999px){
+.reservation-form{
+  width: 70%;
+  margin-top: 50px;
+  margin-left: 20%;
+}
+.reservation-text{
+  font-size: 30px;
+}
+.comments-section{
+  width: 80%;
+  margin-left: 0%;
+}
+.comments-div{
+  margin-top: 5%;
+  width: 90%;
+}
+.comments-div h4{
+font-size: 20px;
+margin-left: 10%;
+}
+.date-time-select{
+  font-size: 15px;
+  width: 90%;
+  margin-left: 10%;
+}
+.date-div h4{
+  font-size: 20px;
+  margin-left: 10%;
+}
+.date-message{
+  margin-left: 10%;
+}
+.service-select{
+  font-size: 15px;
+  width: 90%;
+}
+.service-div h4{
+font-size: 20px;
+}
+.submit-button{
+  margin-left: 35%;
+  margin-top: 5px;
+border-radius: 40px;
+padding: 5px 15px;
+border: 2px black solid;
+font-size: 20px;
+font-family: arial;
+font-weight: bold;
+cursor: pointer;
+}
+.washing-checkbox-div h5{
+font-size: 15px;
+}
+}
+
+/*monitor*/
+@media only screen and (min-width: 1000px){
+  .reservation-form{
+    width: 65%;
+    margin: 50px 350px;
+  }
+}

@@ -1,0 +1,99 @@
+body{
+  background-image: url("/images/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed
+}
+.post-form{
+  position: absolute;
+  background-color: white;
+  display: flex;
+  width: 96%;
+  flex-direction: column;
+  margin-top: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 450px;
+  align-items: center;
+  border-radius: 20px;
+  opacity: 88%;
+}
+.comments-section{
+  height: 110px;
+  width: 600px;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+}
+.comments-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial;
+}
+.comments-section::placeholder{
+  font-size: 20px;
+}
+.post-button{
+  margin-left: 15px;
+  margin-top: 100px;
+border-radius: 40px;
+padding: 10px 30px;
+border: 2px black solid;
+font-size: 20px;
+font-family: arial;
+font-weight: bold;
+cursor: pointer;
+}
+.post-button:hover{
+  opacity: 85%;
+  transition: 0.15s;
+}
+.post-button:active{
+  transition: 0.2s;
+  border: 2px white;
+  color: white;
+  background-color: black;
+}
+/*phone*/
+@media only screen and (min-width:300px) and (max-width:767px){
+
+  .post-form{
+    width: 50%;
+    height: 80%;
+    margin-top: 70px;
+    margin-left: 30%;
+  }
+  .comments-section{
+    width: 70%;
+    height: 100px;
+  }
+  .comments-div{
+    width: 100%;
+  }
+}
+
+
+/*tablet*/
+@media only screen and (min-width: 768px) and (max-width: 999px){
+.post-form{
+  width: 70%;
+  margin-top: 50px;
+  margin-left: 20%;
+}
+.comments-section{
+  width: 80%;
+  margin-left: 10%;
+}
+.comments-div{
+  width: 100%;
+}
+}
+
+/*monitor*/
+@media only screen and (min-width: 1000px){
+  .post-form{
+    width: 65%;
+    margin: 50px 350px;
+  }
+}

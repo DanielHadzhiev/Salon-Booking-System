@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="video-background">
+    <video autoplay muted loop id="bg-video">
+      <source src="/videos/background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  
+
+  <div class="animate__animated animate__fadeInLeft">
+<main class = "info-div ">
+  <div class="text-div">
+
+  <h1 class="header ">Welcome to <span class="salon-name">Rusalka!</span></h1>
+
+  <p class="intro-paragraph">At our salon, we are dedicated to providing you with a relaxing and rejuvenating experience that enhances your natural beauty. Step into our world of tranquility and pampering, where we prioritize your well-being.</p>
+  </div>
+
+  <div class="salon-info">
+
+    <div class="salon-info-text">
+  <p>Addess: Sofia - Lulin 7 - ul.Dzavaharval Neru - bl.719</p>
+  <p>Email: rusalkaBeauty@gmail.com</p>
+  <p>Phone: 0885049225</p>
+   </div>
+
+  </div>
+</main>
+</div>
+
+
+<div class="animate__animated animate__fadeInRight">
+  <nav class="buttons-div">
+      <form th:action="@{/login}" th:method="get">
+   <div class="login-div">
+     <h4 class="question">
+      Already have an account?
+     </h4>
+     <button type="submit" class="login-button">Login</button>
+   </div>
+      </form>
+      <form th:action="@{/register}" th:method="get">
+   <div class="register-div">
+    <h4 class="question">
+      Create new account?
+     </h4>
+     <button type="submit" class="register-button">Register</button>
+   </div>
+      </form>
+  </nav>
+</div>
+
+
+</body>
+</html>

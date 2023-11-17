@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="/css/service-home.css">
+  <link rel="stylesheet" href="/css/service-home-sidebar.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+</head>
+<body>
+<nav th:replace="~{fragments/commons::nav}"></nav>
+
+<main class="content-flex d-flex flex-column  w-50">
+<div class="price-list border border-3 d-flex text-center">
+
+  <div class="barber-pole p-2"><img class="barber-pole-image animate__animated animate__bounce" src="/images/barber-pole.png" alt=""></div>
+
+  <div class="container w-80 p-2">
+  
+   <h1 class="header animate__animated animate__backInDown">
+  Prices
+   </h1>
+
+  <div class="row justify-content-center">
+
+    <div class=" trimming-div col-xl-4 animate__animated animate__backInLeft">
+      <h4>Trimming</h4>
+      <h6>Men - 12lv</h6>
+      <h6>Women - 10lv</h6>
+    </div>
+
+    <div class="dyeing-div col-xl-4 animate__animated animate__backInRight">
+      <h4>Dyeing</h4>
+      <h6>Short hair - 15lv</h6>
+      <h6>Normal hair - 17lv</h6>
+      <h6>Long hair - 20lv</h6>
+    </div>
+
+  </div>
+
+    <div class="row justify-content-center align-itmes-center">
+
+     <div class=" pensioners-div col-xl-4 animate__animated animate__backInLeft">
+      <h4>Pensioners</h4>
+      <h6>Women - 10lv</h6>
+      <h6>Men - 8lv</h6>
+     </div>
+
+     <div class=" drying-div col-xl-4 mt-3 animate__animated animate__backInRight">
+      <h4>Drying</h4>
+      <h6>Short hair - 10lv</h6>
+      <h6>Normal hair - 15lv</h6>
+      <h6>Long hair - 20lv</h6>
+     </div>
+
+    </div>
+  
+
+  <div class="row justify-content-center">
+   <div class=" curls-div col-xl-4 animate__animated animate__backInLeft">
+    <h4>Curls</h4>
+    <h6>Short hair - 25lv</h6>
+    <h6>Normal hair - 35lv</h6>
+    <h6>Long hair - 50lv</h6>
+   </div>
+
+   <div class=" washing-div col-xl-4 mt-3 animate__animated animate__backInRight">
+    <h4>Washing</h4>
+    <h6>Normal hair - 15lv</h6>
+    <h6>Long hair - 20lv</h6>
+   </div>
+  </div>
+
+<div class=" braiding-div row header animate__animated animate__backInUp">
+  <h4>Braiding</h4>
+  <h6>Whole hair - 30lv</h6>
+  <h6>Half hair - 20lv</h6>
+</div>
+ </div>
+
+<div class="barber-pole p-2"><img class="barber-pole-image animate__animated animate__bounce" src="/images/barber-pole.png"></div>
+
+</div>
+
+<div class="buttons-div">
+ <a type="button" class="reserve-button" th:href="@{/make-reservation}">Make reservation</a>
+ <a type="button" class="reserve-button" th:href="@{/news}">News</a>
+  <a type="button" class="reserve-button" th:if="${@loggedUser.role=='ADMIN'}" th:href="@{/make-admin}">Make admin</a>
+</div>
+
+</main>
+ 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <script src="/scripts/side-bar-text.js">
+  </script>
+</body>                                                                   
+</html>

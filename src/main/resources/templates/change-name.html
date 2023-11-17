@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change name</title>
+<link rel="stylesheet" href="/css/change-name.css">
+<link rel="stylesheet" href="/css/service-home-sidebar.css">
+<link rel="stylesheet" href="/css/messages.css">
+</head>
+<body>
+
+<nav th:replace="~{fragments/commons::nav}"></nav>
+
+  <form th:object="${changeNameDTO}" th:action="@{/profile/change-name}" th:method="post" class="name-form" style="text-align: center;">
+    <h1 class="header">Change name:</h1>
+    <h2 class="header">New name:</h2>
+    <div class="input-div">
+      <img class="user-image" src="/images/user.svg">
+    <input th:errorclass="bg-danger" th:field="*{newName}" class="name-input" type="text" placeholder="Enter your new name here">
+  </div>
+    <p th:if="${#fields.hasErrors('newName')}" th:errors="*{newName}" class="backend-message"></p>
+  <p class="name-message"></p>
+  <button type="submit" class="submit-button">
+    Change
+  </button>
+  </form>
+  
+ <script src="/front-validations/change-name.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News</title>
+  <link rel="stylesheet" href="/css/service-home-sidebar.css">
+  <link rel="stylesheet" href="/css/news.css">
+</head>
+<body>
+<nav th:replace="~{fragments/commons::nav}"></nav>
+
+  <section class="content">
+<h1 class="header">News</h1>
+
+    <section th:each="news :${newsExportDTO}" class="news-info" style="text-align: center;">
+      <section>
+
+      <p class="posted-by">From: <span th:text="${news.publisherName}"></span></p>
+      <p th:text="${news.content}"></p>
+
+    </section>
+  </section>
+
+</section>
+
+<section class="secondary-div">
+
+  <section class="weather-section">
+
+    <div class="weather-div">
+
+    <h1><span class="bolded">Weather in:</span> <span th:text="${city}"></span></h1>
+    <p><span class="bolded">Description:</span> <span th:text="${weatherDescription}"></span></p>
+    <p><span class="bolded">Temperature:</span> <span th:text="${temp}"></span> &deg;C</p>
+    <img th:src="@{'https://openweathermap.org/img/w/' + ${iconCode} + '.png'}" alt="Weather Icon"/>
+
+    </div>
+
+  </section>
+
+  <div>
+
+    <form th:action="@{/post-news}" th:method="get">
+
+      <button th:if="${@loggedUser.role=='ADMIN'}" type="submit" class="post-news">
+        Post
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+</body>
+</html>

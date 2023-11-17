@@ -1,0 +1,186 @@
+body{
+  background-image: url("/images/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed
+}
+.bg-danger{
+  background-color: #FF3C38;
+}
+.registration-form{
+  position: absolute;
+  background-color: white;
+  display: flex;
+  width: 96%;
+  flex-direction: column;
+  margin-top: 10px;
+  height: 1100px;
+  align-items: center;
+  border-radius: 20px;
+  opacity: 88%;
+}
+.name-column,
+.email-column,
+.password-column,
+.gender-column{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.register-text{
+  font-size: 40px;
+  font-family: Arial;
+  font-weight: bold;
+}
+.user-info > *{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.image-row{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+.default-image{
+height: 100px;
+width: 100px;
+}
+.image{
+  border-style: dashed;
+  border-radius: 20px;
+  padding: 10px 10px;
+}
+.form-file{
+  display: block;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+.add-photo{
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: solid 2px;
+  font-weight: bold;
+  background-color: rgb(145, 189, 145);
+}
+.add-photo:hover{
+opacity: 0.7;
+}
+.add-photo:active{
+opacity: 0.5;
+}
+.image-message,
+.name-message,
+.email-message,
+.password-message,
+.gender-message{
+  visibility: hidden;
+}
+.user-image,
+.email-image,
+.password-image,
+.gender-image{
+  height: 30px;
+  width: 30px;
+}
+
+.name-bar,
+.email-bar,
+.password-bar{
+  height: 40px;
+  width: 250px;
+  border: 2px #606060 solid;
+border-radius: 30px;
+font-size: 20px;
+}
+
+.name-row,
+.email-row,
+.password-row,
+.select-gender-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.show-password{
+  height: 20px;
+  width: 30px;
+  cursor: pointer;
+}
+.select-gender{
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  width: 200px;
+  border-width: 2px;
+  border-style: solid;
+  width: 250px;
+}
+.submit-button{
+  margin-top:20px;
+border-radius: 40px;
+padding: 10px 20px;
+border: 2px black solid;
+font-size: 20px;
+font-family: arial;
+font-weight: bold;
+cursor: pointer;
+}
+.submit-button:hover{
+  opacity: 85%;
+  transition: 0.15s;
+}
+.submit-button:active{
+  transition: 0.2s;
+  border: 2px white;
+  color: white;
+  background-color: black;
+}
+.have-account{
+  color: black;
+  margin-top: 25px;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.have-account:hover{
+  opacity: 85%;
+  transition: 0.2s;
+}
+.have-account:active{
+opacity: 60%;
+transition: 0.1s;
+}
+/*phone*/
+@media only screen and (min-width:300px) and (max-width:768px){
+.registration-form{
+  width: 90%;
+  margin: auto;
+  margin-left: 3%;
+}
+}
+
+/*tablet*/
+@media only screen and (min-width: 768px) and (max-width:999px){
+.registration-form{
+  width: 60%;
+  margin-top: 0px;
+  margin-left: 25%;
+}
+
+}
+
+/*monitor*/
+@media only screen and (min-width: 1000px){
+  .registration-form{
+    width: 50%;
+    margin-left: 30%;
+  
+  }
+}

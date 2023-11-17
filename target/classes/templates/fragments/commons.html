@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Commons</title>
+  <link rel="stylesheet" href="/css/service-home-sidebar.css">
+</head>
+<body>
+<nav class="sidebar">
+
+  <p class="welcome-text side-button-text">Welcome <span th:text="${@loggedUser.name}"></span>!</p>
+
+  <a class="home-button side-button" th:href="@{/}">
+    <img class="home-image" src="/images/services.png">
+    <p class="home-text side-button-text">Services</p>
+  </a>
+
+  <a class="reservation-button side-button" th:href="@{/my-reservations}">
+    <img class="reservations-image" src="/images/reservations.png">
+    <p class="reservations-text side-button-text">Reservations</p>
+  </a>
+
+  <a class="profile-button side-button" th:href="@{/profile}">
+    <img class="profile-image" src="/images/profile.png">
+    <p class="profile-text side-button-text">Profile</p>
+  </a>
+
+  <a class="info-button side-button" th:href="@{/about-us}">
+    <img class="info-image" src="/images/info.svg">
+    <p class="info-text side-button-text">About us</p>
+  </a>
+
+  <a class="log-out-button side-button" th:href="@{/logout}">
+    <img class="log-out-image" src="/images/log-out.png">
+    <p class="log-out-text side-button-text">Log out</p>
+  </a>
+</nav>
+</body>
+</html>

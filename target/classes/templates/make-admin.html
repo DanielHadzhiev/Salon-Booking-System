@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make admin</title>
+  <link rel="stylesheet" href="/css/make-admin.css">
+  <link rel="stylesheet" href="/css/service-home-sidebar.css">
+  <link rel="stylesheet" href="/css/messages.css">
+</head>
+<body>
+
+<nav th:replace="~{fragments/commons::nav}"></nav>
+
+<form th:action="@{/make-admin}" th:method="post" class="make-admin-form">
+<h1>Make admin</h1>
+
+<select class="user-select" name="selectedEmailId">
+  <option value="" disabled selected>Select user</option>
+  <option th:each="email :${emailsExportDTO}" th:value="${email.id}"><span th:text="${email.email}"></span></option>
+</select>
+  <p th:if="${error}" class="backend-message">This field is mandatory.</p>
+<p class="make-admin-message"></p>
+
+<button type="submit" class="submit-button">
+Change
+</button>
+
+</form>
+
+
+<script src="/front-validations/make-admin.js"></script>
+</body>
+</html>

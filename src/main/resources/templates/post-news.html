@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post news</title>
+  <link rel="stylesheet" href="/css/service-home-sidebar.css">
+  <link rel="stylesheet" href="/css/post-news.css">
+  <link rel="stylesheet" href="/css/messages.css">
+</head>
+<body>
+
+<nav th:replace="~{fragments/commons::nav}"></nav>
+
+  <form th:object="${newsImportDTO}" th:action="@{/post-news}" th:method="post" class="post-form">
+    <div class="comments-div">
+      <h1>Add news:</h1>
+      <textarea th:field="*{content}" th:errorclass="bg-danger" class="comments-section" cols="30" rows="10" placeholder="Write something :&#41;"></textarea>
+      <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="backend-message"></p>
+      <p class="news-message"></p>
+      <button type="submit" class="post-button">Post news</button>
+    </div>
+  </form>
+
+  <script src="/front-validations/post-news.js"></script>
+</body>
+</html>

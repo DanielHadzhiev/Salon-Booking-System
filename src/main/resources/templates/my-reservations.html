@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Reservations</title>
+  <link rel="stylesheet" href="/css/service-home-sidebar.css">
+  <link rel="stylesheet" href="/css/my-reservations.css">
+</head>
+<body>
+
+<nav th:replace="~{fragments/commons::nav}"></nav>
+
+  <main class="my-reservations">
+<h1 class="header">My reservations</h1>
+
+    <section th:each="reservation :${userReservationsDTO}" class="reservation-info">
+      <div class="date-and-hour">
+        <p class="parametar">
+          Date and hour:
+        </p>
+        <p th:text="${reservation.dateAndHour}" class="date-and-hour">
+        </p>
+      </div>
+      <div class="service-name">
+        <p class="parametar">
+          Service:
+        </p>
+        <p th:text="${reservation.service}" class="service-name">
+        </p>
+      </div>
+      <div class="additional-washing">
+        <p class="parametar">
+          Additional washing:
+        </p>
+        <p th:text="${reservation.additionalWashing}" class="additional-washing">
+          Yes
+        </p>
+      </div>
+      <div class="price">
+        <p class="parametar">
+          Price:
+        </p>
+        <p class="price">
+          <span th:text="${reservation.price}"></span>lv
+        </p>
+      </div>
+      <div>
+        <a th:href="@{'/my-reservations/undo-reservation/'+${reservation.id}}" class="undo-button">Undo Reservation</a>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
