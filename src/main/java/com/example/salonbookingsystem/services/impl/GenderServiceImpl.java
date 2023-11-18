@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class GenderServiceImpl implements GenderService {
 
-    private GenderRepository genderRepository;
+    private final GenderRepository genderRepository;
 
     @Autowired
     public GenderServiceImpl(GenderRepository genderRepository) {

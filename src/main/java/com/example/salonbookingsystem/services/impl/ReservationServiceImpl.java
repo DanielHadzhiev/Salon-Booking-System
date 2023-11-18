@@ -24,15 +24,15 @@ import java.util.Optional;
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
-    private ReservationRepository reservationRepository;
+    private final ReservationRepository reservationRepository;
 
-    private ServiceRepository serviceRepository;
+    private final ServiceRepository serviceRepository;
 
-    private LoggedUser loggedUser;
+    private final LoggedUser loggedUser;
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
 
     @Autowired

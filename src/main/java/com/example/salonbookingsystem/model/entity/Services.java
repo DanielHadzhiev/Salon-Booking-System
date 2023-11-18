@@ -3,8 +3,6 @@ package com.example.salonbookingsystem.model.entity;
 import com.example.salonbookingsystem.model.enums.ServiceEnum;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "services")
@@ -17,7 +15,7 @@ public class Services {
     }
 
     public Services() {
-        this.products = new ArrayList<>();
+
     }
 
     @Id
@@ -34,9 +32,6 @@ public class Services {
    @Column(name = "client_feature")
    private String clientFeature;
 
-    @ManyToMany(targetEntity = Product.class,
-            mappedBy = "services")
-    private List<Product> products;
 
     public long getId() {
         return id;
@@ -52,14 +47,6 @@ public class Services {
 
     public void setClientFeature(String clientFeature) {
         this.clientFeature = clientFeature;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     public ServiceEnum getServiceName() {

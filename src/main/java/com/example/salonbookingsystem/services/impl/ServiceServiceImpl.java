@@ -15,9 +15,9 @@ import java.util.List;
 @Service
 public class ServiceServiceImpl implements ServiceService {
 
-    private ServiceRepository serviceRepository;
+    private final ServiceRepository serviceRepository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public ServiceServiceImpl(ServiceRepository serviceRepository,
