@@ -118,4 +118,11 @@ public class NewsServiceImpl implements NewsService {
             return new HashMap<>();
         }
     }
+
+    @Override
+    public void resetNews() {
+
+        this.newsRepository.deleteAll();
+
+    }
 }

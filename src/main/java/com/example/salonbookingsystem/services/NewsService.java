@@ -18,4 +18,6 @@ public interface NewsService {
     @Scheduled(fixedRate = 1800000)
     Map<String,String> visualizeWeather();
 
+    void resetNews();
+
 }
