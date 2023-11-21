@@ -17,8 +17,8 @@ spring:
         enabled: 'true'
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    password: ${MY_SQL_PASS:Daniel131205}
-    username: ${MY_SQL_USERNAME:root}
+    password: ${MY_SQL_PASS:}
+    username: ${MY_SQL_USERNAME:}
     url: jdbc:mysql://localhost:3306/salon_system_db?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
 logging:
   level:
