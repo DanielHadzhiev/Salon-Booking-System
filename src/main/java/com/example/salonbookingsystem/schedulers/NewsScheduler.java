@@ -1,4 +1,4 @@
-package com.example.salonbookingsystem.shedulers;
+package com.example.salonbookingsystem.schedulers;
 
 import com.example.salonbookingsystem.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
