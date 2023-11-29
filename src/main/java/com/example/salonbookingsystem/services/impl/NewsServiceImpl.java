@@ -3,18 +3,17 @@ package com.example.salonbookingsystem.services.impl;
 import com.example.salonbookingsystem.model.dto.ExportNewsDTO;
 import com.example.salonbookingsystem.model.dto.ImportNewsDTO;
 import com.example.salonbookingsystem.model.entity.News;
-import com.example.salonbookingsystem.model.entity.User;
+import com.example.salonbookingsystem.model.entity.UserEntity;
 import com.example.salonbookingsystem.repositories.NewsRepository;
 import com.example.salonbookingsystem.repositories.UserRepository;
 import com.example.salonbookingsystem.services.NewsService;
-import com.example.salonbookingsystem.session.LoggedUser;
+import com.example.salonbookingsystem.services.UserService;
 import org.json.JSONObject;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.*;
 
 @Service
@@ -32,14 +31,14 @@ public class NewsServiceImpl implements NewsService {
 
     private final UserRepository userRepository;
 
-    private final LoggedUser loggedUser;
+    private final UserService userService;
 
     @Autowired
     public NewsServiceImpl(NewsRepository newsRepository,
                            ModelMapper modelMapper,
                            UserRepository userRepository,
-                           LoggedUser loggedUser,
-                           RestTemplate restTemplate) {
+                           RestTemplate restTemplate,
+                           UserService userService) {
 
         this.newsRepository = newsRepository;
 
@@ -47,15 +46,15 @@ public class NewsServiceImpl implements NewsService {
 
         this.userRepository = userRepository;
 
-        this.loggedUser = loggedUser;
-
         this.restTemplate =restTemplate;
+
+        this.userService = userService;
     }
 
     @Override
     public void postNews(ImportNewsDTO importNewsDTO) {
 
-        Optional<User> user = this.userRepository.findByEmail(this.loggedUser.getEmail());
+        Optional<UserEntity> user = this.userRepository.findByEmail(this.userService.getCurrentEmail());
 
         if(user.isPresent()){
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,17 +42,21 @@
   </section>
 
   <div>
+    <th:block sec:authorize="isAuthenticated()">
 
-    <form th:action="@{/post-news}" th:method="get">
+    <form sec:authorize="hasRole('ADMIN')" th:action="@{/post-news}" th:method="get">
 
-      <button th:if="${@loggedUser.role=='ADMIN'}" type="submit" class="post-news">
+      <button type="submit" class="post-news">
         Post
       </button>
 
     </form>
 
+    </th:block>
+
   </div>
 
 </section>
+<script th:replace="~{fragments/commons::script}"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 <head>
     <meta charset="UTF-8">
     <title>Commons</title>
@@ -9,7 +10,7 @@
 <body>
 <nav class="sidebar">
 
-  <p class="welcome-text side-button-text">Welcome <span th:text="${@loggedUser.name}"></span>!</p>
+  <p class="welcome-text side-button-text">Welcome <th:block sec:authentication="name"></th:block>!</p>
 
   <a class="home-button side-button" style="text-decoration:none" th:href="@{/}">
     <img class="home-image" src="/images/services.png">
@@ -31,10 +32,20 @@
     <p class="info-text side-button-text">About us</p>
   </a>
 
-  <a class="log-out-button side-button" style="text-decoration:none" th:href="@{/logout}">
-    <img class="log-out-image" src="/images/log-out.png">
-    <p class="log-out-text side-button-text">Log out</p>
-  </a>
+
+    <a style="text-decoration: none" class=" logout-div log-out-button side-button" onclick="submitForm()">
+     <img class="log-out-image" src="/images/log-out.png">
+     <p class="log-out-text side-button-text"
+              >Log out</p>
+    </a>
+
+  <form id="myForm" th:method="post" th:action="@{/logout}">
+  </form>
 </nav>
+<script>
+  function submitForm() {
+    document.getElementById("myForm").submit();
+  }
+</script>
 </body>
 </html>

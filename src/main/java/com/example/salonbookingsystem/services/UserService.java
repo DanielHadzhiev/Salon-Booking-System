@@ -11,13 +11,9 @@ public interface UserService {
 
     void registerUser(RegisterDTO registerDTO) throws IOException;
 
-    boolean loginUser(LoginDTO loginDTO);
-
-    void logoutUser();
-
-    boolean isUserLogged();
-
     ProfileDTO exportProfile();
+
+    boolean loginUser(LoginDTO loginDTO);
 
     boolean changePassword(ChangePasswordDTO changePasswordDTO);
 
@@ -28,6 +24,10 @@ public interface UserService {
     List<EmailsExportDTO> getAllEmails();
 
     void makeAdmin(long id);
+
+    String getCurrentEmail();
+
+    String getCurrentName();
 
 
 }

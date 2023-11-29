@@ -1,16 +1,20 @@
 package com.example.salonbookingsystem.services.impl;
 
 import com.example.salonbookingsystem.model.dto.*;
-import com.example.salonbookingsystem.model.entity.User;
+import com.example.salonbookingsystem.model.entity.Role;
+import com.example.salonbookingsystem.model.entity.UserEntity;
 import com.example.salonbookingsystem.model.enums.GenderEnum;
 import com.example.salonbookingsystem.model.enums.RolesEnum;
 import com.example.salonbookingsystem.repositories.GenderRepository;
 import com.example.salonbookingsystem.repositories.RoleRepository;
 import com.example.salonbookingsystem.repositories.UserRepository;
 import com.example.salonbookingsystem.services.UserService;
-import com.example.salonbookingsystem.session.LoggedUser;
+import com.example.salonbookingsystem.utils.CustomAuthentication;
+import com.example.salonbookingsystem.utils.CustomUserDetails;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +34,6 @@ public class UserServiceImpl implements UserService {
 
     private final ModelMapper modelMapper;
 
-    private final LoggedUser loggedUser;
-
     private final RoleRepository roleRepository;
 
     private final PasswordEncoder passwordEncoder;
@@ -40,13 +42,11 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository,
                            ModelMapper modelMapper,
                            GenderRepository genderRepository,
-                           LoggedUser loggedUser,
                            RoleRepository roleRepository,
                            PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.genderRepository = genderRepository;
-        this.loggedUser = loggedUser;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -54,15 +54,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerUser(RegisterDTO registerDTO) throws IOException {
 
-        User user = this.modelMapper.map(registerDTO, User.class);
+        UserEntity user = this.modelMapper.map(registerDTO, UserEntity.class);
         user.setUserPhoto(convertMultipartFileToByteArray(registerDTO.getUserImage()));
         user.setGender(this.genderRepository.findByGender(GenderEnum.valueOf(registerDTO.getGender())));
 
+        List<Role> rolesList = user.getRoles();
+
         if(registerDTO.getName().contains("admin")){
-            user.setRole(this.roleRepository.findByName(RolesEnum.ADMIN));
+
+            rolesList.add(this.roleRepository.findByName(RolesEnum.ADMIN));
+
         }else {
-            user.setRole(this.roleRepository.findByName(RolesEnum.USER));
+
+            rolesList.add(this.roleRepository.findByName(RolesEnum.USER));
+
         }
+        user.setRoles(rolesList);
 
         user.setPassword(this.passwordEncoder.encode(registerDTO.getPassword()));
 
@@ -72,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean loginUser(LoginDTO loginDTO) {
-        Optional<User> byEmail = this.userRepository.findByEmail(loginDTO.getEmail());
+        Optional<UserEntity> byEmail = this.userRepository.findByEmail(loginDTO.getEmail());
 
         if(byEmail.isEmpty()){
             return false;
@@ -80,41 +87,29 @@ public class UserServiceImpl implements UserService {
         else if (!this.passwordEncoder.matches(loginDTO.getPassword(),byEmail.get().getPassword())) {
             return false;
         }
-        else {
-            this.loggedUser.login(byEmail.get());
-            return true;
-        }
-    }
-
-    @Override
-    public void logoutUser() {
-        this.loggedUser.logout();
-    }
-
-    @Override
-    public boolean isUserLogged() {
-        return this.loggedUser.getId()>0;
+        return false;
     }
 
     @Override
     public ProfileDTO exportProfile() {
-        Optional<User> currentUser = this.userRepository.findByEmail(this.loggedUser.getEmail());
 
-        if(currentUser.isEmpty()){
-            return null;
-        }
-        ProfileDTO profileDTO = this.modelMapper.map(currentUser.get(), ProfileDTO.class);
+            Optional<UserEntity> currentUser = this.userRepository.findByEmail(getCurrentEmail());
 
-        profileDTO.setGender(currentUser.get().getGender().getGender().name());
-        profileDTO.setUserImage(Base64.getEncoder().encodeToString(currentUser.get().getUserPhoto()));
+            if (currentUser.isEmpty()) {
+                return null;
+            }
+            ProfileDTO profileDTO = this.modelMapper.map(currentUser.get(), ProfileDTO.class);
 
-        return profileDTO;
+            profileDTO.setGender(currentUser.get().getGender().getGender().name());
+            profileDTO.setUserImage(Base64.getEncoder().encodeToString(currentUser.get().getUserPhoto()));
+
+            return profileDTO;
     }
 
     @Override
     public boolean changePassword(ChangePasswordDTO changePasswordDTO) {
 
-        Optional<User> user = this.userRepository.findByEmail(this.loggedUser.getEmail());
+        Optional<UserEntity> user = this.userRepository.findByEmail(getCurrentEmail());
 
         if(user.isEmpty()){
             return false;
@@ -132,12 +127,12 @@ return true;
     @Override
     public void changeEmail(ChangeEmailDTO changeEmailDTO) {
 
-        Optional<User> byEmail = this.userRepository.findByEmail(this.loggedUser.getEmail());
+        Optional<UserEntity> byEmail = this.userRepository.findByEmail(getCurrentEmail());
 
         if(byEmail.isPresent()){
 
             byEmail.get().setEmail(changeEmailDTO.getNewEmail());
-            this.loggedUser.setEmail(changeEmailDTO.getNewEmail());
+            changeEmail(changeEmailDTO.getNewEmail());
             this.userRepository.save(byEmail.get());
 
         }
@@ -147,12 +142,12 @@ return true;
     @Override
     public void changeName(ChangeNameDTO changeNameDTO) {
 
-        Optional<User> byEmail = this.userRepository.findByEmail(this.loggedUser.getEmail());
+        Optional<UserEntity> byEmail = this.userRepository.findByEmail(getCurrentEmail());
 
         if(byEmail.isPresent()){
 
             byEmail.get().setName(changeNameDTO.getNewName());
-            this.loggedUser.setName(changeNameDTO.getNewName());
+            changeName(changeNameDTO.getNewName());
             this.userRepository.save(byEmail.get());
 
         }
@@ -161,8 +156,8 @@ return true;
     @Override
     public List<EmailsExportDTO> getAllEmails() {
 
-        Optional<List<User>> allByEmailNot = this.userRepository
-                .findAllByEmailNotAndRoleName(this.loggedUser.getEmail(),
+        Optional<List<UserEntity>> allByEmailNot = this.userRepository
+                .findAllByEmailNotAndRolesName(getCurrentEmail(),
                         RolesEnum.USER);
 
         if(allByEmailNot.isEmpty()){
@@ -179,15 +174,105 @@ return true;
     @Override
     public void makeAdmin(long id) {
 
-        Optional<User> user = this.userRepository.findById(id);
+        Optional<UserEntity> user = this.userRepository.findById(id);
 
         if(user.isPresent()){
-            user.get().setRole(this.roleRepository.findByName(RolesEnum.ADMIN));
+
+            List<Role> roles = user.get().getRoles();
+
+            roles.add(this.roleRepository.findByName(RolesEnum.ADMIN));
+
+            user.get().setRoles(roles);
+
             this.userRepository.save(user.get());
         }
 
     }
 
+    @Override
+    public String getCurrentEmail() {
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+            if (authentication != null && authentication.isAuthenticated() && authentication.getPrincipal() instanceof CustomUserDetails customUserDetails) {
+
+                return customUserDetails.getEmail();
+            } else {
+                return "";
+        }
+    }
+
+    @Override
+    public String getCurrentName() {
+
+        Optional<UserEntity> byEmail = this.userRepository.findByEmail(getCurrentEmail());
+
+        if(byEmail.isPresent()){
+            return byEmail.get().getName();
+        }
+
+        return "Anonymous";
+
+    }
+
+    private String getCurrentPassword(){
+
+        Optional<UserEntity> byEmail = this.userRepository.findByEmail(getCurrentEmail());
+
+        if(byEmail.isPresent()){
+            return byEmail.get().getPassword();
+        }
+
+        return "";
+
+    }
+
+    private void changeName(String newUsername){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication != null &&
+                authentication.isAuthenticated() &&
+                authentication.getPrincipal() instanceof CustomUserDetails customUserDetails) {
+
+            CustomUserDetails updatedUserDetails = new CustomUserDetails(newUsername,
+                    getCurrentPassword(),
+                    customUserDetails.getAuthorities(),
+                    customUserDetails.getEmail()
+                   );
+
+            Authentication updatedAuthentication = new CustomAuthentication(updatedUserDetails,
+                    authentication.getCredentials(),
+                    authentication.getAuthorities());
+
+            SecurityContextHolder.getContext().setAuthentication(updatedAuthentication);
+
+            }
+        }
+
+        private void changeEmail(String newEmail){
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+            if (authentication != null &&
+                    authentication.isAuthenticated() &&
+                    authentication.getPrincipal() instanceof CustomUserDetails customUserDetails) {
+
+                CustomUserDetails updatedUserDetails = new CustomUserDetails(customUserDetails.getUsername(),
+                        getCurrentPassword(),
+                        customUserDetails.getAuthorities(),
+                        newEmail
+                );
+
+                Authentication updatedAuthentication = new CustomAuthentication(updatedUserDetails,
+                        authentication.getCredentials(),
+                        authentication.getAuthorities());
+
+                SecurityContextHolder.getContext().setAuthentication(updatedAuthentication);
+
+            }
+
+        }
 
     private byte[] convertMultipartFileToByteArray(MultipartFile file) throws IOException {
         if (file != null && !file.isEmpty()) {

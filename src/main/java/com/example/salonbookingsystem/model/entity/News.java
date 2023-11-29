@@ -16,13 +16,13 @@ public class News {
     private String content;
 
     @ManyToOne
-    private User publisher;
+    private UserEntity publisher;
 
-    public User getPublisher() {
+    public UserEntity getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(User publisher) {
+    public void setPublisher(UserEntity publisher) {
         this.publisher = publisher;
     }
 

@@ -83,10 +83,9 @@ return "redirect:/login";
 this.userService.loginUser(loginDTO);
         return "redirect:/";
     }
-    @GetMapping("/logout")
-    public String getLogOut(){
+    @PostMapping("/logout")
+    public String postLogOut(){
 
-        this.userService.logoutUser();
         return "redirect:/";
     }
 }

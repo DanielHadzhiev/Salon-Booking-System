@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,7 +95,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 <div class="buttons-div">
  <a type="button" class="reserve-button" th:href="@{/make-reservation}">Make reservation</a>
  <a type="button" class="reserve-button" th:href="@{/news}">News</a>
-  <a type="button" class="reserve-button" th:if="${@loggedUser.role=='ADMIN'}" th:href="@{/make-admin}">Make admin</a>
+  <a type="button" class="reserve-button" sec:authorize="hasRole('ADMIN')" th:href="@{/make-admin}">Make admin</a>
 </div>
 
 </main>
@@ -103,7 +104,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-  <script src="/scripts/side-bar-text.js">
+  <script src="/js/side-bar-text.js">
   </script>
+<script th:replace="~{fragments/commons::script}"></script>
 </body>                                                                   
 </html>

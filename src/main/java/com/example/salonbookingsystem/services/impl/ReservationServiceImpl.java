@@ -3,17 +3,16 @@ package com.example.salonbookingsystem.services.impl;
 import com.example.salonbookingsystem.model.dto.ReservationDTO;
 import com.example.salonbookingsystem.model.dto.UserReservationDTO;
 import com.example.salonbookingsystem.model.entity.Reservation;
-import com.example.salonbookingsystem.model.entity.Services;
 import com.example.salonbookingsystem.repositories.ReservationRepository;
 import com.example.salonbookingsystem.repositories.ServiceRepository;
 import com.example.salonbookingsystem.repositories.UserRepository;
 import com.example.salonbookingsystem.services.ReservationService;
-import com.example.salonbookingsystem.session.LoggedUser;
+import com.example.salonbookingsystem.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,24 +27,24 @@ public class ReservationServiceImpl implements ReservationService {
 
     private final ServiceRepository serviceRepository;
 
-    private final LoggedUser loggedUser;
-
     private final UserRepository userRepository;
 
     private final ModelMapper modelMapper;
+
+    private final UserService userService;
 
 
     @Autowired
     public ReservationServiceImpl(ReservationRepository reservationRepository,
                                   ServiceRepository serviceRepository,
-                                  LoggedUser loggedUser,
                                   UserRepository userRepository,
-                                  ModelMapper modelMapper) {
+                                  ModelMapper modelMapper,
+                                  UserService userService) {
         this.reservationRepository = reservationRepository;
         this.serviceRepository = serviceRepository;
-        this.loggedUser = loggedUser;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
+        this.userService = userService;
     }
 
     @Override
@@ -59,7 +58,7 @@ this.reservationRepository.save(this.mapDTO(reservationDTO));
     public List<UserReservationDTO> visualizeReservations() {
 
         Optional<List<Reservation>> allReservationsOptional =  this.reservationRepository
-                .findAllByUserEmail(this.loggedUser.getEmail());
+                .findAllByUserEmail(this.userService.getCurrentEmail());
 
         if(allReservationsOptional.isEmpty()){
             return new ArrayList<>();
@@ -117,7 +116,7 @@ return reservationDTOS;
 
         reservation.setDateAndHour(convertDate(reservationDTO.getDateAndHour()));
 
-        reservation.setUser(this.userRepository.findByEmail(this.loggedUser.getEmail()).get());
+        reservation.setUser(this.userRepository.findByEmail(this.userService.getCurrentEmail()).get());
 
         return reservation;
 

@@ -50,7 +50,7 @@ width: 35px;
 .log-out-button{
   display: flex;
   position:fixed;
-margin-top: 540px;
+margin-top: 500px;
 }
  .home-button{
   color: #fff;
@@ -82,7 +82,7 @@ margin-top: 540px;
             transition: 0.2s ;
   }
 .sidebar:hover .side-button-text{
-  margin-top: 10px;
+  margin-top: 5px;
   opacity: 1;
   display: inline-block;
   margin-left: 40px;
@@ -106,25 +106,31 @@ margin-top: 540px;
 .profile-image,
 .info-image,
 .log-out-image{
+    position: fixed;
 height: 30px;
 width: 30px;
 }
 .log-out-button{
   display: flex;
   position:fixed;
-margin-top: 550px;
+margin-top: 500px;
 }
 .sidebar:hover{
   width: 140px;
 }
 .sidebar:hover .side-button-text{
+  position: fixed;
   margin-top: 5px;
   opacity: 1;
   display: inline-block;
-  margin-left: 5px;
+  margin-left: 35px;
   font-family: Arial;
   font-size: 13px;
 }
+  .sidebar:hover .welcome-text{
+    font-size: 13px;
+    margin-left: 20px;
+  }
 }
 
 /*tablet*/
@@ -234,7 +240,7 @@ font-size: 20px;
     .log-out-button{
       display: flex;
       position:fixed;
-    margin-top: 540px;
+    margin-top:500px;
     }
     .sidebar:hover .home-button{
       color: #fff;
@@ -250,7 +256,7 @@ font-size: 20px;
                 transition: 0.2s ;
       }
     .sidebar:hover .side-button-text{
-      margin-top: 10px;
+
       opacity: 1;
       display: inline-block;
       margin-left: 40px;

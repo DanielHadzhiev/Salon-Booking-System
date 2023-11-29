@@ -19,7 +19,7 @@ xmlns:th="http://www.thymeleaf.org">
       <div class="email-column">
     <div class="email-row">
       <img class="email-image" src="/images/email.svg">
-    <input th:errorclass="bg-danger" th:field="*{email}" class="email-bar" type="text" placeholder="Enter your email">
+    <input th:errorclass="bg-danger" th:field="*{email}" name="email" class="email-bar" type="text" placeholder="Enter your email">
   </div>
         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="backend-message"></p>
   <p class="email-message"></p>
@@ -27,7 +27,7 @@ xmlns:th="http://www.thymeleaf.org">
 <div class="password-column">
   <div class="password-row">
     <img class="password-image" src="/images/password.svg">
-    <input th:errorclass="bg-danger" th:field="*{password}" class="password-bar" type="password" placeholder="Enter your password">
+    <input th:errorclass="bg-danger" th:field="*{password}" name="password" class="password-bar" type="password" placeholder="Enter your password">
     <img class="show-password" src="/images/eye-off.svg">
   </div>
   <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="backend-message"></p>
@@ -42,7 +42,7 @@ Create account
   </a>
   </form>
 
-  <script src="/scripts/eye-animation.js"></script>
-  <script src="/front-validations/login.js"></script>
+  <script src="/js/eye-animation.js"></script>
+  <script src="/js/front-validations/login.js"></script>
 </body>
 </html>
