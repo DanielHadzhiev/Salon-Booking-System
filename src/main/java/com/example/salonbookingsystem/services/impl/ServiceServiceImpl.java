@@ -6,6 +6,7 @@ import com.example.salonbookingsystem.repositories.ServiceRepository;
 import com.example.salonbookingsystem.services.ServiceService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.*;
 import com.example.salonbookingsystem.model.entity.Services;
 
@@ -68,7 +69,7 @@ public class ServiceServiceImpl implements ServiceService {
         }
 
     }
-
+    @Cacheable("services")
     @Override
     public List<ServicesDTO> getAllServices() {
 

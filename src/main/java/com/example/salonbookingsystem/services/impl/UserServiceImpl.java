@@ -13,8 +13,10 @@ import com.example.salonbookingsystem.utils.CustomAuthentication;
 import com.example.salonbookingsystem.utils.CustomUserDetails;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,6 +40,8 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final SbUserDetailsService sbUserDetailsService;
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            ModelMapper modelMapper,
@@ -49,6 +53,7 @@ public class UserServiceImpl implements UserService {
         this.genderRepository = genderRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.sbUserDetailsService = new SbUserDetailsService(this.userRepository);
     }
 
     @Override

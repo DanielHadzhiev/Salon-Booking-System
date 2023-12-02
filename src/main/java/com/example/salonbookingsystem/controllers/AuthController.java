@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -18,6 +19,7 @@ import java.io.IOException;
 public class AuthController {
 
     private final UserService userService;
+
 
     @Autowired
     public AuthController(UserService userService) {
@@ -66,7 +68,8 @@ return "redirect:/login";
     @PostMapping("/login")
     public String postLogin(@Valid LoginDTO loginDTO,
                             BindingResult bindingResult,
-                            RedirectAttributes redirectAttributes){
+                            RedirectAttributes redirectAttributes,
+                            HttpServletResponse response){
 
         boolean result = this.userService.loginUser(loginDTO);
 
@@ -80,6 +83,7 @@ return "redirect:/login";
             redirectAttributes.addFlashAttribute("result", true);
             return "redirect:/login";
         }
+
 this.userService.loginUser(loginDTO);
         return "redirect:/";
     }

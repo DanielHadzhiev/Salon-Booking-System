@@ -12,6 +12,7 @@ public class LoginDTO {
     @NotBlank(message = "This field is mandatory.")
     private String password;
 
+
     public String getEmail() {
         return email;
     }
