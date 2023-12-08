@@ -28,7 +28,7 @@ public class DbInit implements CommandLineRunner {
 initDB();
 
     }
-    public void initDB(){
+    private void initDB(){
 
     this.genderService.initializeGenders();
     this.serviceService.initializeServices();

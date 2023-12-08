@@ -13,8 +13,10 @@ import com.example.salonbookingsystem.utils.CustomAuthentication;
 import com.example.salonbookingsystem.utils.CustomUserDetails;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -61,7 +63,7 @@ public class UserServiceImpl implements UserService {
         user.setUserPhoto(convertMultipartFileToByteArray(registerDTO.getUserImage()));
         user.setGender(this.genderRepository.findByGender(GenderEnum.valueOf(registerDTO.getGender())));
 
-        List<Role> rolesList =new ArrayList<>();
+        List<Role> rolesList = user.getRoles();
 
         if(registerDTO.getName().contains("admin")){
 
@@ -84,9 +86,13 @@ public class UserServiceImpl implements UserService {
     public boolean loginUser(LoginDTO loginDTO) {
         Optional<UserEntity> byEmail = this.userRepository.findByEmail(loginDTO.getEmail());
 
-        return byEmail.filter
-                (userEntity -> this.passwordEncoder.matches(loginDTO.getPassword(),
-                        userEntity.getPassword())).isPresent();
+        if(byEmail.isEmpty()){
+            return false;
+        }
+        else if (!this.passwordEncoder.matches(loginDTO.getPassword(),byEmail.get().getPassword())) {
+            return false;
+        }
+        return false;
     }
 
     @Override
@@ -177,7 +183,7 @@ return true;
 
         if(user.isPresent()){
 
-            List<Role> roles = new ArrayList<>();
+            List<Role> roles = user.get().getRoles();
 
             roles.add(this.roleRepository.findByName(RolesEnum.ADMIN));
 
@@ -273,7 +279,7 @@ return true;
 
         }
 
-    public byte[] convertMultipartFileToByteArray(MultipartFile file) throws IOException {
+    private byte[] convertMultipartFileToByteArray(MultipartFile file) throws IOException {
         if (file != null && !file.isEmpty()) {
             return file.getBytes();
         } else {

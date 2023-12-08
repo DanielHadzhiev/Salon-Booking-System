@@ -31,7 +31,7 @@ public class GenderServiceImpl implements GenderService {
         }
 
     }
-    public boolean areGendersInit(){
+    private boolean areGendersInit(){
        return this.genderRepository.count()>0;
     }
 }
