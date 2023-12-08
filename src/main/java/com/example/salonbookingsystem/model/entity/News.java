@@ -11,7 +11,6 @@ public class News {
     private long id;
 
     @Column(name = "content",
-    columnDefinition = "TEXT",
             nullable = false)
     private String content;
 

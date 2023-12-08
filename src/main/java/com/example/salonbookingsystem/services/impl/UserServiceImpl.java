@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
         user.setUserPhoto(convertMultipartFileToByteArray(registerDTO.getUserImage()));
         user.setGender(this.genderRepository.findByGender(GenderEnum.valueOf(registerDTO.getGender())));
 
-        List<Role> rolesList = user.getRoles();
+        List<Role> rolesList = new ArrayList<>();
 
         if(registerDTO.getName().contains("admin")){
 
@@ -86,13 +86,7 @@ public class UserServiceImpl implements UserService {
     public boolean loginUser(LoginDTO loginDTO) {
         Optional<UserEntity> byEmail = this.userRepository.findByEmail(loginDTO.getEmail());
 
-        if(byEmail.isEmpty()){
-            return false;
-        }
-        else if (!this.passwordEncoder.matches(loginDTO.getPassword(),byEmail.get().getPassword())) {
-            return false;
-        }
-        return false;
+        return byEmail.filter(userEntity -> this.passwordEncoder.matches(loginDTO.getPassword(), userEntity.getPassword())).isPresent();
     }
 
     @Override
@@ -183,7 +177,7 @@ return true;
 
         if(user.isPresent()){
 
-            List<Role> roles = user.get().getRoles();
+            List<Role> roles = new ArrayList<>();
 
             roles.add(this.roleRepository.findByName(RolesEnum.ADMIN));
 

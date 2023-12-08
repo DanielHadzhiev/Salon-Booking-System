@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -68,8 +67,7 @@ return "redirect:/login";
     @PostMapping("/login")
     public String postLogin(@Valid LoginDTO loginDTO,
                             BindingResult bindingResult,
-                            RedirectAttributes redirectAttributes,
-                            HttpServletResponse response){
+                            RedirectAttributes redirectAttributes){
 
         boolean result = this.userService.loginUser(loginDTO);
 
