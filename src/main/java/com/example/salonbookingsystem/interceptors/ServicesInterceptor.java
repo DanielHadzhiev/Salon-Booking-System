@@ -38,7 +38,7 @@ public class ServicesInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
                            ModelAndView modelAndView){
 
-        Cache cache = cacheManager.getCache("services");
+        Cache cache = this.cacheManager.getCache("services");
 
         Cache.ValueWrapper valueWrapper=null;
         if (cache != null) {
